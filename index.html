@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mpanampy Matematika - Math Helper</title>
+  <link rel="stylesheet" href="design-tokens.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="main-container" id="main-container">
+    <header class="page-header">
+      <h1 id="page-title">Mpanampy Matematika</h1>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="mg">MG</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <section id="tier-selection" class="tier-selector">
+        <div class="tier-card" data-tier="debutant">
+          <h2 class="tier-card-title" data-i18n="tier_debutant">Débutant</h2>
+          <p class="tier-card-desc" data-i18n="tier_debutant_desc">Addition sy soustraction (1-99)</p>
+        </div>
+        <div class="tier-card" data-tier="intermediaire">
+          <h2 class="tier-card-title" data-i18n="tier_intermediaire">Intermédiaire</h2>
+          <p class="tier-card-desc" data-i18n="tier_intermediaire_desc">Multiplication, division, négatifs</p>
+        </div>
+        <div class="tier-card" data-tier="avance">
+          <h2 class="tier-card-title" data-i18n="tier_avance">Avancé</h2>
+          <p class="tier-card-desc" data-i18n="tier_avance_desc">Fractions, décimales, pourcentages</p>
+        </div>
+        <div class="tier-card" data-tier="expert">
+          <h2 class="tier-card-title" data-i18n="tier_expert">Expert</h2>
+          <p class="tier-card-desc" data-i18n="tier_expert_desc">Géométrie, algèbre intro</p>
+        </div>
+      </section>
+
+      <section id="problem-section" class="hidden">
+        <div class="score-display">
+          <span data-i18n="score_label">Score:</span>
+          <div class="stars-container" id="stars-container">
+            <span class="star empty">★</span>
+            <span class="star empty">★</span>
+            <span class="star empty">★</span>
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-question" id="problem-question"></div>
+          <input type="number" class="answer-input" id="answer-input" placeholder="Valiny / Réponse">
+          <button class="btn btn-primary" id="submit-answer" data-i18n="submit_answer">Alefa / Envoyer</button>
+          <button class="btn btn-secondary hidden" id="show-steps" data-i18n="show_steps">Aseho ny dingana / Montrer les étapes</button>
+          <button class="btn btn-outline hidden" id="next-problem" data-i18n="next_problem">Manaraka / Suivant</button>
+          
+          <div class="feedback-message" id="feedback-message"></div>
+          
+          <div class="steps-container" id="steps-container"></div>
+        </div>
+
+        <button class="btn btn-outline" id="back-to-tiers" data-i18n="back_to_tiers">Miverina / Retour</button>
+      </section>
+    </main>
+  </div>
+
+  <div class="support-banner" id="support-banner">
+    <span class="support-banner-text" data-i18n="support_banner">Manampiana / Soutien</span>
+  </div>
+
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-content">
+      <h2 class="modal-title" data-i18n="modal_title">Misaotra Tompo!</h2>
+      <p class="modal-text" data-i18n="modal_text">Misaotra betsaka noho ny fanohanana anay!</p>
+      <div class="modal-placeholder">
+        <p>[PLACEHOLDER_NAME]</p>
+        <p>[PLACEHOLDER_NUMBER]</p>
+      </div>
+      <p class="modal-text" data-i18n="modal_thanks_fr">Merci beaucoup pour votre soutien!</p>
+      <button class="btn btn-primary modal-close" id="modal-close" data-i18n="modal_close">Afaka / Fermer</button>
+    </div>
+  </div>
+
+  <script src="js/problem-generator.js"></script>
+  <script src="js/solver.js"></script>
+  <script src="js/ui-controller.js"></script>
+  
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(function(registration) {
+          console.log('ServiceWorker registered:', registration.scope);
+        })
+        .catch(function(error) {
+          console.log('ServiceWorker registration failed:', error);
+        });
+    }
+  </script>
+</body>
+</html>
